@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+}
+
+.body {
+  font-family: 'Poppins', sans-serif;
+}
+
+@layer components {
+  .app {
+    @apply min-h-screen bg-slate-800 text-gray-100;
+  }
+  .app-container {
+    @apply container mx-auto px-10 md:px-40;
+  }
+  .app-navbar {
+    @apply bg-slate-700;
+  }
+  .app-nav {
+    @apply flex justify-center gap-4 py-4;
+  }
+
+  .btn {
+    @apply px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded-md shadow-sm opacity-100;
+  }
+}
