@@ -4,6 +4,7 @@ const PATH = {
   auth: '/auth',
   login: '/auth/login',
   signup: '/auth/signup',
+  profile: '/profile',
   notfound: '/*',
 };
 
@@ -18,6 +19,11 @@ const ROUTES = [
     name: 'About',
     isLogged: true,
   },
+  // {
+  //   path: PATH.profile,
+  //   name: 'Profile',
+  //   isLogged: true,
+  // },
   {
     path: PATH.auth,
     name: 'Authentication',
@@ -32,9 +38,11 @@ const FAKE_PROFILES = [
     firstName: 'User 1',
     lastName: 'Fake',
     email: 'user1@email.com',
-    password: '1q2w3e',
+    password: '123',
     photoUrl:
       'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+    country: 'Ukraine',
+    city: 'Bahmut',
   },
   {
     id: 2,
@@ -42,12 +50,14 @@ const FAKE_PROFILES = [
     firstName: 'User 2',
     lastName: 'Fake',
     email: 'user2@email.com',
-    password: '1q2w3e',
+    password: 'qwe',
     photoUrl:
       'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1061&q=80',
+    country: 'Ukraine',
+    city: 'Mariupol',
   },
 ];
 
-const USER_STORE_KEY = 'current';
+const USER_STORE_KEY = 'user';
 
 export { PATH, ROUTES, FAKE_PROFILES, USER_STORE_KEY };

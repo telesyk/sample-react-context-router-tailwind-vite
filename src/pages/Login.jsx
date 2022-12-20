@@ -1,8 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/authContext';
-import { PATH, FAKE_PROFILES } from '../constants';
+import { PATH, FAKE_PROFILES, USER_STORE_KEY } from '../constants';
 import { checkUserAuth, setStorageData } from '../helpers';
+
+const CAPTIONS = {
+  passwordWrong: 'Password is wrong.',
+  emailNotRegistered: 'Email is not registered.',
+  emailEmpty: 'Email is empty.',
+};
 
 export default function Login() {
   const [loginValues, setLoginValues] = useState({ email: '', password: '' });
@@ -20,19 +26,19 @@ export default function Login() {
           const stringifyUserData = JSON.stringify(registeredUser);
           setValid(true);
           setAuth(prev => !prev);
-          setStorageData('current', stringifyUserData);
+          setStorageData(USER_STORE_KEY, stringifyUserData);
           navigate(PATH.home);
         } else {
           setValid(false);
-          setValidText('Password is wrong.');
+          setValidText(CAPTIONS.passwordWrong);
         }
       } else {
         setValid(false);
-        setValidText('Email is not registered.');
+        setValidText(CAPTIONS.emailNotRegistered);
       }
     } else {
       setValid(false);
-      setValidText('Email is empty.');
+      setValidText(CAPTIONS.emailEmpty);
     }
   };
 
@@ -56,6 +62,22 @@ export default function Login() {
   return (
     <>
       <h1 className="app-section__title">Login Page</h1>
+      <p className="my-8 text-center">
+        test user1:{' '}
+        <code className="px-2 py-1 rounded bg-gray-100 text-pink-600">
+          user1@email.com
+        </code>{' '}
+        |{' '}
+        <code className="px-2 py-1 rounded bg-gray-100 text-pink-600">123</code>
+      </p>
+      <p className="my-8 text-center">
+        test user2:{' '}
+        <code className="px-2 py-1 rounded bg-gray-100 text-pink-600">
+          user2@email.com
+        </code>{' '}
+        |{' '}
+        <code className="px-2 py-1 rounded bg-gray-100 text-pink-600">qwe</code>
+      </p>
       <div className="my-4">
         <input
           type="email"

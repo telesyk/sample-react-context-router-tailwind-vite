@@ -19,6 +19,12 @@
   .app-nav {
     @apply flex justify-center gap-4 items-center;
   }
+  .is-auth {
+    @apply justify-between;
+  }
+  .app-main-menu {
+    @apply inline-flex justify-center gap-4 items-center;
+  }
   .app-nav__link {
     @apply p-4;
   }

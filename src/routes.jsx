@@ -9,6 +9,7 @@ import ErrorPage from './pages/ErrorPage';
 import Auth from './pages/Auth';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Profile from './pages/Profile';
 
 function Routes() {
   const element = useRoutes([
@@ -23,6 +24,10 @@ function Routes() {
         {
           path: getRelativePath(PATH.about),
           element: <About />,
+        },
+        {
+          path: getRelativePath(PATH.profile),
+          element: <Profile />,
         },
         {
           path: getRelativePath(PATH.auth),
