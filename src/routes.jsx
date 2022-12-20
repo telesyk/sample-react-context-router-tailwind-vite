@@ -1,64 +1,55 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
-import { routesConfig } from './routesConfig';
+import { PATH } from './constants';
+import { getRelativePath } from './helpers';
+import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
-import NotFound from './pages/NotFound';
+import ErrorPage from './pages/ErrorPage';
+import Auth from './pages/Auth';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
-const routes = [
-  {
-    path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/about',
-    element: <About />,
-  },
-  {
-    path: '/*',
-    element: <NotFound />,
-  },
-];
+function Routes() {
+  const element = useRoutes([
+    {
+      path: getRelativePath(PATH.home),
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: getRelativePath(PATH.about),
+          element: <About />,
+        },
+        {
+          path: getRelativePath(PATH.auth),
+          children: [
+            {
+              index: true,
+              element: <Auth />,
+            },
+            {
+              path: getRelativePath(PATH.login),
+              element: <Login />,
+            },
+            {
+              path: getRelativePath(PATH.signup),
+              element: <Signup />,
+            },
+          ],
+        },
+        {
+          path: getRelativePath(PATH.notfound),
+          element: <ErrorPage />,
+        },
+      ],
+    },
+  ]);
 
-const checkRoutesConfig = (config, routesConf) => {
-  const unconfigured = config.filter((conf, idx) => {
-    if (!conf) return;
-    if (!routesConf[idx]) return;
-    const elementName = routesConf[idx].element.type.name;
-    // eslint-disable-next-line consistent-return
-    return conf.name !== elementName;
-  });
-  return Boolean(unconfigured.length);
-};
-
-function ProblemRoutesError() {
-  return (
-    <div className="app">
-      <div className="app-container">
-        <h3 className="px-5 py-10 text-rouse-500 leading-8 text-center">
-          App{' '}
-          <code className="px-1 bg-gray-100 text-gray-700 rounded">routes</code>{' '}
-          has problems in configurations
-          <br />
-          Check{' '}
-          <code className="px-1 bg-gray-100 text-gray-700 rounded">
-            routesConfig.js
-          </code>{' '}
-          or{' '}
-          <code className="px-1 bg-gray-100 text-gray-700 rounded">
-            routes.js
-          </code>
-        </h3>
-      </div>
-    </div>
-  );
+  return element;
 }
 
-function Router() {
-  const element = useRoutes(routes);
-  const isProblemRoutes = checkRoutesConfig(routesConfig, routes);
-
-  return !isProblemRoutes ? element : <ProblemRoutesError />;
-}
-
-export default Router;
+export default Routes;

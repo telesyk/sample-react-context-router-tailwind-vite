@@ -1,12 +1,15 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import { AuthContextProvider } from '../context/authContext';
 import Navigation from './Navigation';
+import PageContainer from './PageContainer';
 
-export default function Layout({ children }) {
+export default function Layout() {
   return (
-    <div className="app">
-      <Navigation />
-      <div className="app-container py-5">{children}</div>
-    </div>
+    <AuthContextProvider>
+      <div className="app">
+        <Navigation />
+        <PageContainer />
+      </div>
+    </AuthContextProvider>
   );
 }

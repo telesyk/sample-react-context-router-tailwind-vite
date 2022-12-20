@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-}
-
 .body {
   font-family: 'Poppins', sans-serif;
 }
@@ -20,7 +17,28 @@
     @apply bg-slate-700;
   }
   .app-nav {
-    @apply flex justify-center gap-4 py-4;
+    @apply flex justify-center gap-4 items-center;
+  }
+  .app-nav__link {
+    @apply p-4;
+  }
+  .app-nav__link.active {
+    @apply text-gray-300 bg-slate-800;
+  }
+  .app-section {
+    @apply py-6;
+  }
+  .app-section__title {
+    @apply mb-8 text-4xl leading-10 font-bold text-center;
+  }
+  .app-article__title {
+    @apply mb-4 text-xl font-bold;
+  }
+  .app-article__image {
+    @apply max-w-xs mx-auto my-3 rounded md:float-left md:mr-3;
+  }
+  .app-profile__image {
+    @apply max-w-xs my-3 rounded;
   }
 
   .btn {
